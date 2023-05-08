@@ -31,7 +31,7 @@
                             <div class="rr bg-light vertline">
                                 <i class="fa fa-check" aria-hidden="true"></i>
                             </div>
-                            <a>
+                            <a href="regisrtation.html">
                                 <p class="ps-3">Registration</p>
                             </a>
                         </li>
@@ -41,7 +41,7 @@
                             <div class="rr bg-light vertline">
                                 <i class="fa fa-check" aria-hidden="true"></i>
                             </div>
-                            <a >
+                            <a href="cbu.html">
                                 <p class="ps-3">CBU Data</p>
                             </a>
                         </li>
@@ -51,7 +51,7 @@
                             <div class="rr bg-light ">
                                 <i class="fas fa-ellipsis-h"></i>
                             </div>
-                            <a href="{{route('collection',$id)}}">
+                            <a href="collections.html">
                                 <p class="ps-3">Collection </p>
                             </a>
                         </li>
@@ -98,15 +98,15 @@
 
                 <form action="{{route('collection.store')}}" method="post" id="regForm" class=" ps-2 pb-3">
                     @csrf
+                    <input type="hidden" name="donar_id" value="{{$id}}">
                     <div class="tab">
-
-                        <input type="hidden" name="donar_id" value="{{$id}}">
                         <div class="d-flex pt-3 justify-content-between">
                             <h5 class="ps-2 collh5">Cord Eligibility Criteria</h5>
                             <p class="me-1 mt-2 pagenum">Page 1 of 4</p>
 
                         </div>
                         <!--1 row -->
+
                         <div class="col-lg-12 col-sm-6 ">
                             <div class="d-flex">
                                 <input type="text" class="inputUnit divofform ps-3" id="cordLength"
@@ -155,7 +155,7 @@
                                        name="NeonatalApgarScore10m" placeholder="Neonatal Apgar Score (10 min )">
                             </div>
                             <div class="listNeonatal d-flex">
-                                <input type="text" class="inputUnit divofform ps-3" id="NeonatalordeOfBirth"
+                                <input type="text" class="inputUnit divofform ps-3" id="order_birth"
                                        name="order_birth" placeholder="Neonatal order of Birth ">
                                 <select name="gender" class="inputUnit selectcollec pe-3"
                                         id="NeonatalGender">
@@ -172,12 +172,264 @@
                                        placeholder="Neonatal Chest measurement">
                             </div>
                         </div>
-
+                        <div class=" mt-4  ">
+                            <button type="button" class="btn mt-4 px-5 "
+                                    style="font-size: 17px;margin-left:84%;width: 170px;" id="nextBtn"
+                                    onclick="nextPrev(1)">Next</button>
+                        </div>
                     </div>
                     <!-- tab 1-->
                     <!-- ------------------------------------------ -->
                     <!-- ------------------------------------------ -->
+                    <div class="tab">
+                        <div class="d-flex pt-3 justify-content-between">
+                            <h5 class="ps-1 collh5">Neonatal Eligibility Criteria</h5>
+                            <p class="me-1 mt-2 pagenum">Page 2 of 4</p>
 
+                        </div>
+                        <!--1 row -->
+                        <div class="col-lg-12  ">
+                            <div class="d-flex justify-content-between">
+                                <input type="text" class="inputUnit divofform ps-3" id="UmbilicalStumpLength"
+                                       name="umbilical_stupm" placeholder="Umbilical Stump Length">
+
+                                <input type="text" class="inputUnit ps-3 " id="NeonatalBirthweight"
+                                       name="birth_weight" placeholder="Neonatal Birth weight">
+
+                            </div>
+
+                            <div class=" d-flex justify-content-between">
+                                <!-- <div class=" "> -->
+                                <select name="blod_group" class="inputUnit divofform selectcollec "
+                                        id="BabyBloodGroup">
+                                    <option value class="d-none">Baby Blood Group</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="AB">AB</option>
+                                    <option value="O">O</option>
+                                </select>
+                                <!-- </div> -->
+                                <!-- <div class=""> -->
+                                <select name="rh" class="inputUnit selectcollec " id="RH">
+                                    <option value class="d-none">RH</option>
+                                    <option value="Positive">Positive</option>
+                                    <option value="Negative">Negative</option>
+                                </select>
+
+                                <!-- </div> -->
+
+
+
+                            </div>
+                        </div>
+                        <!-- end form1 -->
+                        <div class="d-flex radiocollection ">
+                            <div class="d-flex ">
+                                <p class=" fw-bold pe-1"><span style="color:red;">*</span> Dysmorphic Child</p>
+                                <div class="ms-4 ">
+                                    <input type="radio" id="DysmorphicChildYes" name="dysmorphic_child" value="yes">
+                                    <label for="DysmorphicChildYes" class="me-3">Yes</label>
+                                    <input type="radio" id="DysmorphicChildNO" name="dysmorphic_child" value="no">
+                                    <label for="DysmorphicChildNO">No</label>
+                                </div>
+                            </div><!--top form2-->
+                            <div class="d-flex ps-4 m-auto">
+                                <p class=" fw-bold pe-1">Fetal Distress</p>
+                                <div class="ms-4 ">
+                                    <input type="radio" id="FetalDistressYes" name="fetal_distress" value="yes">
+                                    <label for="FetalDistressYes" class="me-3">Yes</label>
+                                    <input type="radio" id="FetalDistressNO" name="fetal_distress" value="no">
+                                    <label for="FetalDistressNO">No</label>
+                                </div>
+                            </div> <!--top form2-->
+                        </div>
+                        <div class="d-flex ps-3 radiocollection ">
+                            <p class=" fw-bold pe-3 ">Fetal Anomalies</p>
+                            <div class="ms-4" style="margin-right:10px;">
+                                <input type="radio" id="FetalAnomaliesYes" name="fetal_anomalies" value="yes">
+                                <label for="FetalAnomaliesYes" class="me-3">Yes</label>
+                                <input type="radio" id="FetalAnomaliesNO" name="fetal_anomalies" value="no">
+                                <label for="FetalAnomaliesNO">No</label>
+                            </div>
+                        </div><!-- radiocollection -->
+
+                        <div class="col-lg-12 col-sm-6 ">
+                            <div class=" pt-3 ">
+                                <h5 class="ps-1 collh5">Data Of Collection</h5>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <input type="text" class="inputUnit divofform ps-3" id="Doctorname"
+                                       name="doctor_name" placeholder="Doctor name">
+                                <input type="text" onfocus="(this.type='date')"
+                                       onblur="if(!this.value)this.type='text'" class="inputUnit cdcd  ps-3  "
+                                       id="DeliveryDate" name="delivery_date" placeholder="Delivery Date">
+                                <i class="fa fa-calendar-days calinderdate cald1"></i>
+                            </div>
+                            <div class="d-flex justify-content-between">
+
+                                <input type="text" onfocus="(this.type='time')"
+                                       onblur="if(!this.value)this.type='text'" class="inputUnit tdtdd divofform ps-3"
+                                       id="DeliveryTime" name="delivery_time" placeholder="Delivery Time">
+
+                                <input type="text" onfocus="(this.type='date')"
+                                       onblur="if(!this.value)this.type='text'" class="inputUnit cdcd  ps-3  "
+                                       id="CollectionBagmanufacturingDate" name="manufturing_date"
+                                       placeholder="Collection Bag manufacturing Date">
+                                <i class="fa fa-calendar-days calinderdate cald1"></i>
+                            </div>
+                            <div class="d-flex justify-content-between">
+
+
+                                <input type="text" onfocus="(this.type='date')"
+                                       onblur="if(!this.value)this.type='text'" class="inputUnit cdcd divofform ps-3  "
+                                       id="CollectionBagexpiryDate" name="expiry_date"
+                                       placeholder="Collection Bag expiry Date ">
+                                <i class="fa fa-calendar-days calinderdate cald2"></i>
+                                <!-- <i class="fa fa-calendar-days calinderdate" ></i> -->
+
+                                <input type="text" class="inputUnit ps-3 " id="LotNumber" name="lot_number"
+                                       placeholder="Lot Number">
+
+
+                            </div>
+
+                        </div>
+                        <div class=" mt-4  ">
+                            <button type="button" class="btn mt-4 px-5 "
+                                    style="font-size: 17px;margin-left:84%;width: 170px;" id="nextBtn"
+                                    onclick="nextPrev(1)">Next</button>
+                        </div>
+                    </div>
+                    <!-- tab 2-->
+                    <!-- endform2 -->
+                    <!----------------------------------->
+                    <div class="tab">
+                        <div class="d-flex pt-3 justify-content-between">
+                            <h5 class="ps-1 collh5">Data Of Collection</h5>
+                            <p class="me-1 mt-2 pagenum">Page 3 of 4</p>
+
+                        </div>
+                        <!--1 row -->
+                        <div class="col-lg-12  ">
+
+                            <div class="d-flex justify-content-between">
+
+                                <div class=" d-flex inputUnit me-5 ps-3">
+                                    <span class="pt-3">*</span>
+                                    <input type="text" onfocus="(this.type='date')"
+                                           onblur="if(!this.value)this.type='text'" class="inputrequiredYes cdcd "
+                                           id="CBUcollectionDate" name="cpu_date" placeholder=" CBU collection Date">
+                                    <i class="fa fa-calendar-days calinderdate cald"></i>
+                                </div>
+                                <!-- <div class=" d-flex inputUnit ps-3">
+                                    <span class="pt-3">*</span>
+                                    <input type="text" onfocus="(this.type='time')"
+                                        onblur="if(!this.value)this.type='text'" class=" inputrequiredYes tdtd "
+                                        id="DeliveryTime" name="DeliveryTime" placeholder="Delivery Time">
+                                </div> -->
+                                <input type="text" class="inputUnit  ps-3 ms-4" id="receivedandsent" name="sent_by"
+                                       placeholder="Received from Hospitals and sent By">
+
+                            </div>
+
+                            <div class="liststatus d-flex">
+                                <!-- <input type="text" class="inputUnit divofform ps-3" id="" name=""
+                                    placeholder="Received from Hospitals and sent By"> -->
+                                <input type="number" class="inputUnit divofform ps-3" id="Temperatureroom" name="temp_room"
+                                       placeholder="Temperature of the room">
+                                <div class=" d-flex inputUnit ps-3">
+                                    <span class="pt-3">*</span>
+                                    <select name="collection_statues" class=" inputrequiredYes  selectcollec pe-3" id="cordVessels">
+                                        <option value class="d-none">Collection Status</option>
+                                        <option value="Successfully">Successfully collected</option>
+                                        <option value="Failed">Failed</option>
+                                        <option value="Rejected">Rejected</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- end form1 -->
+                        <div class="col-lg-12  ">
+
+                            <div class="d-flex justify-content-between">
+                                <!-- <input type="number" class="inputUnit divofform ps-3" id="Temperatureroom" name=""
+                                    placeholder="Temperature of the room"> -->
+
+                                <input type="text" onfocus="(this.type='time')"
+                                       onblur="if(!this.value)this.type='text'" class="inputUnit divofform tdtdd  ps-3"
+                                       id="receivedBankTime" name="cpu_bank_time" placeholder="CBU received to bank time">
+                                <input type="text" onfocus="(this.type='date')"
+                                       onblur="if(!this.value)this.type='text'" class="inputUnit cdcd  ps-3 pe-2 "
+                                       id="receivedBankDate" name="cpu_bank_date" placeholder="CBU received to bank date">
+                                <i class="fa fa-calendar-days calinderdate cald1"></i>
+
+                            </div>
+                            <!-- <div class="d-flex">
+                                <input type="text" onfocus="(this.type='date')"
+                                    onblur="if(!this.value)this.type='text'" class="inputUnit cdcd  ps-3 pe-2 "
+                                    id="receivedBankDate" name="" placeholder="CBU received to bank date">
+                                <i class="fa fa-calendar-days calinderdate cald1"></i>
+                            </div> -->
+                            <div class=" justify-content-between">
+                                <input type="text" class="inputUnit  ps-3" id="timeDifference" name="time_defrence"
+                                       placeholder="Time difference between collection and received to bank">
+
+                            </div>
+
+                        </div>
+                        <div class="mt-4 ">
+                            <button type="button" class="btn mt-4 px-5 "
+                                    style="font-size: 17px;margin-left:84%;width: 170px;" id="nextBtn"
+                                    onclick="nextPrev(1)">Next</button>
+                        </div>
+
+                    </div>
+                    <!-- tab 3-->
+                    <div class="tab">
+                        <div class="d-flex pt-3 justify-content-between">
+                            <h5 class="ps-1 collh5">Cord Eligibility Criteria</h5>
+                            <p class="me-1 mt-2 pagenum">Page 4 of 4</p>
+
+                        </div>
+                        <!--1 row -->
+                        <div class="col-lg-12 col-sm-6 pt-5">
+
+
+                            <div class="d-flex radiocollection mb-3">
+                                <p class=" fw-bold pe-1" style="margin-right:250px ;font-size: 24px;">Was the
+                                    placenta free from
+                                    trauma, tears, pus or inflammation?</p>
+                                <div class=" m-auto">
+                                    <input type="radio" id="placentafreefromYes" name="placenta_free_trauma" value="yes">
+                                    <label for="placentafreefromYes" class="me-3">Yes</label>
+                                    <input type="radio" id="placentafreefromNO" name="placenta_free_trauma" value="no">
+                                    <label for="placentafreefromNO">No</label>
+                                </div>
+                            </div>
+                            <div class="d-flex radiocollection mb-5">
+                                <p class=" fw-bold pe-5" style="margin-right:460px ;font-size: 24px;">Problems
+                                    encountered
+                                    during collection?</p>
+                                <div class=" m-auto mb-5">
+                                    <input type="radio" id="problemsdurcollectionYes" name="problems_collection" value="yes">
+                                    <label for="problemsdurcollectionYes" class="me-3">Yes</label>
+                                    <input type="radio" id="problemsdurcollectionNO" name="problems_collection" value="no">
+                                    <label for="problemsdurcollectionNO">No</label>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <!-- end form1 -->
+
+                        <div class="mt-5 ">
+                            <button type="submit" class="btn mt-4 px-5 "
+                                    style="font-size: 17px;margin-left:84%;width: 170px;">finish</button>
+                        </div>
+                    </div>
                     <!-- tab 4-->
 
 
@@ -191,11 +443,7 @@
                         onclick="nextPrev(1)">Next</button> -->
 
 
-                    <div class=" mt-4  ">
-                        <button type="submit" class="btn mt-4 px-5 "
-                                style="font-size: 17px;margin-left:84%;width: 170px;"
-                                >finish</button>
-                    </div>
+
 
 
                 </form>
@@ -304,12 +552,12 @@
 
 
 
-<script src="JS/bootstrap.bundle.min.js"></script>
-<script src="JS/wow.min.js"></script>
+<script src="{{asset('JS/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('JS/wow.min.js')}}"></script>
 <script>
     new WOW().init();
 </script>
-<script src="JS/aos.js"></script>
+<script src="{{asset('JS/aos.js')}}"></script>
 <script>
     AOS.init();
 </script>

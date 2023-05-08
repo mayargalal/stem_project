@@ -29,7 +29,7 @@ class CollectionController extends Controller
     public function store(Request $request){
 
         $validator = Validator::make($request->all(), [
-            'answer' => 'required|',
+
             'donar_id' => 'required',
 
         ]);
